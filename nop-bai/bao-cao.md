@@ -11,13 +11,13 @@ HƯỚNG DẪN - đọc rồi XÓA TOÀN BỘ các khối chú thích này sau k
     và xem trước bản in bằng cách mở file trên GitHub rồi Ctrl+P / Cmd+P.
 -->
 
-| | |
-|---|---|
-| Họ và tên | ___ |
-| MSSV | ___ |
-| Lớp / Khóa | K4 |
-| Repo GitHub | https://github.com/___/___ |
-| Ngày nộp | ___ |
+|              |                                    |
+| ------------ | ---------------------------------- |
+| Họ và tên | ___                                |
+| MSSV         | ___                                |
+| Lớp / Khóa | K4                                 |
+| Repo GitHub  | https://github.com/___/___ |
+| Ngày nộp   | ___                                |
 
 ---
 
@@ -25,11 +25,11 @@ HƯỚNG DẪN - đọc rồi XÓA TOÀN BỘ các khối chú thích này sau k
 
 <!-- Khoảng 120 - 150 từ. Điền kết quả thật từ MLflow UI ở Bước 1, tối thiểu 3 lần chạy. -->
 
-| Lần chạy | n_estimators | learning_rate | max_depth | f1_score | accuracy |
-|---|---|---|---|---|---|
-| 1 | ___ | ___ | ___ | ___ | ___ |
-| 2 | ___ | ___ | ___ | ___ | ___ |
-| 3 | ___ | ___ | ___ | ___ | ___ |
+| Lần chạy | n_estimators | learning_rate | max_depth | f1_score           | accuracy |
+| ---------- | ------------ | ------------- | --------- | ------------------ | -------- |
+| 1          | 150          | 0.15          | 4         | 0.7181818181818181 | 0.876    |
+| 2          | 200          | 0.1           | 5         | 0.7149321266968326 | 0.874    |
+| 3          | 50           | 0.05          | 2         | 0.6051282051282051 | 0.846    |
 
 **Bộ siêu tham số đã chọn:** `n_estimators=___`, `learning_rate=___`, `max_depth=___`.
 
@@ -49,7 +49,7 @@ Trả lời trong phần Lý do:
 
 <!-- Khoảng 120 - 150 từ. -->
 
-___
+---
 
 <!--
 Cần nêu được:
@@ -67,10 +67,10 @@ Cần nêu được:
 <!-- Nêu 2 - 3 khó khăn thật, mỗi ô một câu ngắn. -->
 
 | Khó khăn | Nguyên nhân | Cách giải quyết |
-|---|---|---|
-| ___ | ___ | ___ |
-| ___ | ___ | ___ |
-| ___ | ___ | ___ |
+| ---------- | ------------- | ------------------ |
+| ___        | ___           | ___                |
+| ___        | ___           | ___                |
+| ___        | ___           | ___                |
 
 ---
 
@@ -78,10 +78,10 @@ Cần nêu được:
 
 <!-- Lấy số liệu từ bảng ở mục 3.6 của tasks/buoc-3.md. -->
 
-| | f1_score | accuracy |
-|---|---|---|
-| Bước 2 (chỉ `train_batch1`) | ___ | ___ |
-| Bước 3 (thêm `train_batch2`) | ___ | ___ |
+|                                  | f1_score | accuracy |
+| -------------------------------- | -------- | -------- |
+| Bước 2 (chỉ`train_batch1`)  | ___      | ___      |
+| Bước 3 (thêm`train_batch2`) | ___      | ___      |
 
 **Nhận xét:** ___
 
