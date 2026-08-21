@@ -8,14 +8,14 @@ Mục tiêu: Mỗi khi bạn push code hoặc thay đổi dữ liệu, GitHub Ac
 
 Bạn có thể sử dụng **một trong ba** cloud provider sau. Các hướng dẫn trong file này lấy **GCP làm ví dụ mặc định**. Nếu dùng AWS hoặc Azure, ánh xạ theo bảng dưới đây:
 
-| Khái niệm | GCP | AWS | Azure |
-|---|---|---|---|
-| Object Storage | Google Cloud Storage (GCS) | Amazon S3 | Azure Blob Storage |
-| VM | Compute Engine (GCE) | EC2 | Azure Virtual Machine |
-| CLI | `gcloud` / `gsutil` | `aws` | `az` |
-| DVC storage extra | `dvc[gs]` | `dvc[s3]` | `dvc[azure]` |
-| Cloud SDK Python | `google-cloud-storage` | `boto3` | `azure-storage-blob` |
-| Credentials | Service Account JSON | Access Key / IAM Role | Service Principal / Connection String |
+| Khái niệm       | GCP                        | AWS                   | Azure                                 |
+| ----------------- | -------------------------- | --------------------- | ------------------------------------- |
+| Object Storage    | Google Cloud Storage (GCS) | Amazon S3             | Azure Blob Storage                    |
+| VM                | Compute Engine (GCE)       | EC2                   | Azure Virtual Machine                 |
+| CLI               | `gcloud` / `gsutil`    | `aws`               | `az`                                |
+| DVC storage extra | `dvc[gs]`                | `dvc[s3]`           | `dvc[azure]`                        |
+| Cloud SDK Python  | `google-cloud-storage`   | `boto3`             | `azure-storage-blob`                |
+| Credentials       | Service Account JSON       | Access Key / IAM Role | Service Principal / Connection String |
 
 ---
 
@@ -46,10 +46,10 @@ Mỗi provider có cơ chế xác thực riêng: GCP dùng Service Account JSON,
 
 Service account này là danh tính duy nhất được phép truy cập bucket. Nguyên tắc quyền tối thiểu: chỉ cấp quyền cần thiết, trên đúng phạm vi cần thiết.
 
-| Role | Sử dụng | Lý do |
-|---|---|---|
-| roles/storage.objectAdmin | Nên dùng | Cho phép đọc, ghi, xóa object bên trong bucket. DVC cần quyền này. |
-| roles/storage.admin | Không dùng | Cho phép xóa cả bucket, vi phạm nguyên tắc quyền tối thiểu. |
+| Role                      | Sử dụng    | Lý do                                                                     |
+| ------------------------- | ------------ | -------------------------------------------------------------------------- |
+| roles/storage.objectAdmin | Nên dùng   | Cho phép đọc, ghi, xóa object bên trong bucket. DVC cần quyền này. |
+| roles/storage.admin       | Không dùng | Cho phép xóa cả bucket, vi phạm nguyên tắc quyền tối thiểu.       |
 
 ```bash
 # Tạo service account
@@ -164,6 +164,7 @@ gcloud compute scp sa-key.json income-api:~/sa-key.json \
 Tạo file `src/serve.py` theo khung dưới đây. File này chạy trên VM và cung cấp REST API để nhận yêu cầu suy luận.
 
 Nhiệm vụ:
+
 1. Khi khởi động, tải file `model.joblib` từ cloud storage về máy.
 2. Cung cấp endpoint `GET /healthz` trả về trạng thái server.
 3. Cung cấp endpoint `POST /score` nhận 10 đặc trưng và trả về nhãn dự đoán.
@@ -304,13 +305,13 @@ Vào repo GitHub: Settings > Secrets and variables > Actions > New repository se
 
 Thêm chính xác 5 secrets sau:
 
-| Tên secret | Cách lấy giá trị |
-|---|---|
-| STORAGE_CREDENTIALS | GCP: toàn bộ nội dung `sa-key.json` (JSON). AWS: `{"aws_access_key_id":"...","aws_secret_access_key":"..."}`. Azure: Connection String. |
-| ARTIFACT_BUCKET | Tên bucket / container (ví dụ: `my-income-bucket`) |
-| SERVER_HOST | IP công khai của VM (từ bước 2.4) |
-| SERVER_USER | Tên user trên VM (chạy `echo $USER` trong session SSH trên VM) |
-| SERVER_SSH_KEY | Dán toàn bộ nội dung `~/.ssh/income_deploy` (private key, bắt đầu bằng `-----BEGIN OPENSSH PRIVATE KEY-----`) |
+| Tên secret         | Cách lấy giá trị                                                                                                                          |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| STORAGE_CREDENTIALS | GCP: toàn bộ nội dung`sa-key.json` (JSON). AWS: `{"aws_access_key_id":"...","aws_secret_access_key":"..."}`. Azure: Connection String. |
+| ARTIFACT_BUCKET     | Tên bucket / container (ví dụ:`my-income-bucket`)                                                                                        |
+| SERVER_HOST         | IP công khai của VM (từ bước 2.4)                                                                                                        |
+| SERVER_USER         | Tên user trên VM (chạy`echo $USER` trong session SSH trên VM)                                                                           |
+| SERVER_SSH_KEY      | Dán toàn bộ nội dung`~/.ssh/income_deploy` (private key, bắt đầu bằng `-----BEGIN OPENSSH PRIVATE KEY-----`)                      |
 
 Kiểm tra: Mỗi secret khi dán vào phải không có khoảng trắng ở đầu hoặc cuối.
 
@@ -634,6 +635,7 @@ sudo journalctl -u income-api -n 50
 ```
 
 Nguyên nhân phổ biến:
+
 - Biến môi trường `ARTIFACT_BUCKET` sai trong file service.
 - `sa-key.json` chưa được copy lên VM.
 - File model chưa tồn tại trên cloud storage (service chỉ có thể khởi động sau khi pipeline lần đầu tiên chạy thành công).
@@ -650,11 +652,11 @@ Nguyên nhân phổ biến:
 Chụp ba ảnh nộp bài, lưu vào `nop-bai/anh-chup-man-hinh/` (yêu cầu chi tiết:
 [nop-bai/anh-chup-man-hinh/README.md](../nop-bai/anh-chup-man-hinh/README.md)):
 
-| Tên file | Nội dung cần thấy rõ |
-|---|---|
-| `02-actions-buoc-2.png` | Tab Actions với cả bốn jobs màu xanh |
-| `04-curl-api.png` | Terminal chứa cả hai lệnh `curl` và kết quả trả về, thấy rõ IP của VM |
-| `05-cloud-storage.png` | Console hiển thị `dvc/` và `artifacts/current/model.joblib` |
+| Tên file                 | Nội dung cần thấy rõ                                                          |
+| ------------------------- | --------------------------------------------------------------------------------- |
+| `02-actions-buoc-2.png` | Tab Actions với cả bốn jobs màu xanh                                          |
+| `04-curl-api.png`       | Terminal chứa cả hai lệnh`curl` và kết quả trả về, thấy rõ IP của VM |
+| `05-cloud-storage.png`  | Console hiển thị`dvc/` và `artifacts/current/model.joblib`                 |
 
 ---
 
